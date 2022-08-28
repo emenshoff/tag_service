@@ -1,0 +1,107 @@
+{
+    "name":"Test config1",
+    "version": 3.0,    
+    "profiles":[                  
+            {
+                "id":"test",
+                "type": "price_detection",
+                "version" : 2.0,
+                "description":"",
+                "core": {
+                    "detector": "mobile_tag_detector",  
+                    "tag_classifier": "mobile_tag_classifier",                    
+                    "extractor_config":{
+                        "digit_recognizer": "digit_classifier",
+                        "digit_detector": "server_digit_detector"
+                    },
+                    "promo_tag_classes": [
+                        "ypricetag",
+                        "rpricetag",
+                        "cypricetag",
+                        "crpricetag"
+                    ],
+                    "promo_features": [
+                        "OldPrice",
+                        "Promo",
+                        "PromoPrice"
+                    ],
+                    "semantic_models": {
+                        "default_semantic_model": [
+                            "Unknown",
+                            "Главхозторг",
+                            "ЛистОК",
+                            "Нужные вещи",
+                            "Икея",
+                            "Реал",
+                            "Абсолют",
+                            "Молния / Спар - мини",
+                            "Яблоко2",
+                            "Первая свежесть"
+                        ]   
+                    }
+                },
+                "parameters": {
+                    "input_shape":{
+                        "width": 640,
+                        "height": 640,
+                        "channels": 3
+                    },
+                    "batch_size":1000,
+                    "promo_overlap_threshold": 0.7, 
+                    "detection_threshold" : 7.0e-01,
+                    "prediction_batch_size" : 1000
+                    
+                },
+                "scores": {
+                    "precision": "",
+                    "recall": ""
+                }
+            }
+    ],
+    "models":[                
+                {
+                    "name": "mobile_tag_detector",
+                    "version": 2,
+                    "type": "TFServingGRPCBackend",
+                    "path": "mobile_tag_detector",
+                    "host": "tfs_tag",
+                    "port": 8500,   
+                    "options": {
+
+                    }                    
+                },
+                {
+                    "name": "mobile_tag_classifier",
+                    "version": 1,
+                    "type": "TFServingGRPCBackend",
+                    "path": "mobile_tag_classifier",
+                    "host": "tfs_tag",
+                    "port": 8500,   
+                    "options": {
+                        
+                    }                                                      
+                },                                
+                {
+                    "name": "server_digit_detector",
+                    "version": 1,
+                    "type": "TFServingGRPCBackend",
+                    "path": "server_digit_detector",
+                    "host": "tfs_tag",
+                    "port": 8500,   
+                    "options": {
+                        
+                    }                                  
+                },               
+                {
+                    "name": "default_semantic_model",
+                    "version": 2,
+                    "type": "TFServingGRPCBackend",
+                    "path": "mobile_tag_semantic_detector",
+                    "host": "tfs_tag",
+                    "port": 8500,   
+                    "options": {
+                        
+                    }                                  
+                }
+        ]
+}

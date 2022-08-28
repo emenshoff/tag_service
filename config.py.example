@@ -1,0 +1,29 @@
+
+# WEB service parameters
+API_VERSION = 2.0
+MODEL_NAME = "Price tag recognition multi-model service"
+HOST = "192.168.88.3"
+#HOST = '192.168.101.2'
+PORT = '5005'
+MAX_CONTENT_LENGTH = 2000
+
+# engine parameters
+# ENGINE_CONFIG_PATH = "engine_config_mix.json"
+# ENGINE_CONFIG_PATH = "engine_config_local.json"
+ENGINE_CONFIG_PATH = "engine_config_tfs_grpc.json"
+# ENGINE_CONFIG_PATH = "engine_config_tfs_rest.json"
+IO_DEVICE = "CPU:0"                     # file io device
+PREPROCESSING_DEVICE = "CPU:0"          # image encoding/decoding and tensor preprocessing device
+INFERENCE_DEVICE = "GPU:0"              # inference device
+ALLOW_CPU_INFERENCE = False             # run on CPU (possible option for gRPC\REST API backends)
+
+
+MODELS_DIR_PATH = "/media/models/production"
+SUPPORTED_BACKENDS = []              # Types of inference model supported
+OCR_ENABLED = False                     # Character/text recognition functionality
+OCR_BACKEND = "tesseract"               # Backend for OCR
+
+
+# logging options
+LOGGING_CFG = "logging.cfg"
+

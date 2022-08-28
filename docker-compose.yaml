@@ -1,0 +1,46 @@
+
+version: "2.4"
+services:
+
+  tfserving:
+    container_name: tfs_tag
+    image: tensorflow/serving:latest-gpu    
+    # restart: always
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    ports:      
+      - 8500:8500
+      - 8501:8501        
+    
+    volumes:
+      - /media/configs/tfserving.cfg:/models/tfserving.cfg
+      - /media/models/production:/models
+      - /media/logs:/logs    
+    
+    command:
+      - --model_config_file=/models/tfserving.cfg
+
+  app:        
+    container_name: pricetagreader
+    # image: tagreader:latest
+    depends_on: 
+      - tfserving
+    # restart: always
+    ports:
+      # - 5000:5000
+      - 5005:5005    
+    build:
+      context: .
+      dockerfile: Dockerfile   
+    
+    volumes:
+      - /var/logs:/var/logs
+      - /media/models/production:/media/models/production    
+      - /media/datasets/aromam/media_old:/media/nvme1tb/datasets/aromam/media_old
+      # - /data/aromam/server_static/media/:/data/aromam/server_static/media/
+      # - /home/menshoff/cronalabs/pricetag/main.log:/main.log
+    
+    environment:
+      - DEBUG=1   
+

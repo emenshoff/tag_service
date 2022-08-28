@@ -1,0 +1,12 @@
+{
+    "content": ["http://aromam.retailiqa.ru/static/media/5979dc2864586200e6c25ca7/434e56b9ec020cb7c1908f5fca12e72d.jpg",
+    "http://aromam.retailiqa.ru/static/media/5e9403e11cfefa0009ec3304/643d9d84eee9ac4124c697deb431ba48.jpg",
+    "http://aromam.retailiqa.ru/static/media/5e9403e11cfefa0009ec3304/643d9d84eee9ac4124c697deb431ba49.jpg"],
+    "content_prefix": "",
+    "content_type":  "url",
+       
+    "get_original_image": false,
+    "get_pricetag_image": false,
+    "version": 2.0,
+    "profile": "aromam"
+}
